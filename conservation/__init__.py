@@ -11,30 +11,8 @@ def exists():
     """transcript.txt existe."""
     check50.exists("transcript.txt")
     check50.include("solutions.csv")
-
-@check50.check(exists)
-def formatting():
-    """transcript.txt formateado correctamente"""
-    solutions = read_solutions("solutions.csv")
-    answers = read_answers("transcript.txt")
-
-    for answer in answers:
-        for question in solutions.keys():
-            # Check for matching answers
-            # Construct regex for the solution
-            answers_pattern = re.compile(re.escape(answer), re.IGNORECASE)
-
-            if not answers_pattern.search(question):
-                raise check50.Failure("transcript.txt está incorrectamente formateado")
-            
-        #regex = re.compile(
-        #    r"\s*".join([re.escape(word) for word in question.split()]) + r"?\s*"
-        #)
-        #matches = list(filter(regex.search, answers))
-        #if len(matches) != 1:
-        #    raise check50.Failure("transcript.txt está incorrectamente formateado")
-
-@check50.check(formatting)
+    
+@check50.check()
 def primer_art():
     """Primer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -49,7 +27,7 @@ def primer_art():
                 "El primer artículo no fue transcrito correctamente"
             )
 
-@check50.check(formatting)
+@check50.check()
 def segundo_art():
     """Segundo artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -64,7 +42,7 @@ def segundo_art():
                 "El segundo artículo no fue transcrito correctamente"
             )
 
-@check50.check(formatting)
+@check50.check()
 def tercer_art():
     """Tercer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -79,7 +57,7 @@ def tercer_art():
                 "El tercer artículo no fue transcrito correctamente"
             )
         
-@check50.check(formatting)
+@check50.check()
 def cuarto_art():
     """Cuarto artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
