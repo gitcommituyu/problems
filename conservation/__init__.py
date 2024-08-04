@@ -20,7 +20,7 @@ def formatting():
 
     for question in solutions.keys():
         regex = re.compile(
-            r"\s*".join([re.escape(word) for word in question.split()]) + r"?\s*"
+            r"\s*".join([re.escape(word) for word in question.split()]) + r":\s"
         )
         matches = list(filter(regex.search, answers))
         if len(matches) != 1:
@@ -33,7 +33,7 @@ def first_article():
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "I." in question, solutions.keys())
+        filter(lambda question: "I:" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -60,7 +60,7 @@ def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     # construct regex
     regex = re.compile(
         r"\s*".join([re.escape(word) for word in question.split()])
-        + r"?\s*"
+        + r":\s"
         + re.escape(solution)
     )
 
