@@ -18,9 +18,9 @@ def formatting():
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
 
-    for question, solution in solutions.items():
+    for question in solutions.keys():
         regex = re.compile(
-            r"\b{}\b".format(re.escape(solution))
+            r"\s*".join([re.escape(word) for word in question.split()]) + r"?\s*"
         )
         matches = list(filter(regex.search, answers))
         if len(matches) != 1:
