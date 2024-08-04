@@ -27,13 +27,13 @@ def formatting():
             raise check50.Failure("transcript.txt está incorrectamente formateado")
 
 @check50.check(formatting)
-def lost_letter():
+def primer_art():
     """Primer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "I." in question, solutions.keys())
+        filter(lambda question: "i." in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
