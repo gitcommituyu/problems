@@ -19,12 +19,20 @@ def formatting():
     answers = read_answers("transcript.txt")
 
     for question in solutions.keys():
-        regex = re.compile(
-            r"\s*".join([re.escape(word) for word in question.split()]) + r"?\s*"
-        )
-        matches = list(filter(regex.search, answers))
-        if len(matches) != 1:
-            raise check50.Failure("transcript.txt está incorrectamente formateado")
+        for answer in answers:
+            # Check for matching answers
+            # Construct regex for the solution
+            answers_pattern = re.compile(re.escape(answer), re.IGNORECASE)
+
+            if answers_pattern.search(question):
+                raise check50.Failure("transcript.txt está incorrectamente formateado")
+            
+        #regex = re.compile(
+        #    r"\s*".join([re.escape(word) for word in question.split()]) + r"?\s*"
+        #)
+        #matches = list(filter(regex.search, answers))
+        #if len(matches) != 1:
+        #    raise check50.Failure("transcript.txt está incorrectamente formateado")
 
 @check50.check(formatting)
 def primer_art():
@@ -100,13 +108,12 @@ def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     """
     # Construct regex for the solution
     solution_pattern = re.compile(re.escape(solution), re.IGNORECASE)
-
+    
     # Check for matching answers
     for answer in answers:
         if solution_pattern.search(answer):
             return True
     return False
-
 
 def read_answers(filename: str) -> list[str]:
     """
