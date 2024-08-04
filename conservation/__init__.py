@@ -12,6 +12,7 @@ def exists():
     check50.exists("transcript.txt")
     check50.include("solutions.csv")
 
+@check50.check(exists)
 def formatting():
     """transcript.txt formateado correctamente"""
     solutions = read_solutions("solutions.csv")
