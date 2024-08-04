@@ -98,9 +98,6 @@ def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     Returns:
         (bool) whether the student's list of answers contains the correct answer to the given question
     """
-    # decode solution from hex
-    solution = bytes.fromhex(solution).decode("utf-8")
-
     # Construct regex for the solution
     solution_pattern = re.compile(re.escape(solution), re.IGNORECASE)
 
