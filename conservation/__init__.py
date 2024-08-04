@@ -106,4 +106,5 @@ def read_solutions(filename: str) -> dict:
 
             solutions[question] = solution
 
+    print(solutions)
     return solutions
