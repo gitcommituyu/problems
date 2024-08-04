@@ -10,6 +10,7 @@ import check50
 def exists():
     """transcript.txt existe."""
     check50.exists("transcript.txt")
+    check50.include("solutions.csv")
 
 @check50.check(exists)
 def formatting():
