@@ -18,13 +18,13 @@ def formatting():
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
 
-    for question in solutions.keys():
-        for answer in answers:
+    for answer in answers:
+        for question in solutions.keys():
             # Check for matching answers
             # Construct regex for the solution
             answers_pattern = re.compile(re.escape(answer), re.IGNORECASE)
 
-            if answers_pattern.search(question):
+            if not answers_pattern.search(question):
                 raise check50.Failure("transcript.txt está incorrectamente formateado")
             
         #regex = re.compile(
