@@ -18,28 +18,13 @@ def formatting():
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
 
-    for question in solutions.keys():
+    for question, solution in solutions.items():
         regex = re.compile(
-            r"\s*".join([re.escape(word) for word in question.split()]) + r":\s*"
+            r"\b{}\b".format(re.escape(solution))
         )
         matches = list(filter(regex.search, answers))
         if len(matches) != 1:
             raise check50.Failure("transcript.txt está incorrectamente formateado")
-
-@check50.check(formatting)
-def first_article():
-    """Primer Artículo Transcrito""" 
-    solutions = read_solutions("solutions.csv")
-    answers = read_answers("transcript.txt")
-
-    for question in list(
-        filter(lambda question: "I:" in question, solutions.keys())
-    ):
-        solution = solutions[question]
-        if not check_answers(question, solution, answers):
-            raise check50.Failure(
-                "transcript.txt no contiene el primer artículo correctamente transcrito"
-            )
 
 
 def check_answers(question: str, solution: str, answers: list[str]) -> bool:
