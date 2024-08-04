@@ -26,7 +26,21 @@ def formatting():
         if len(matches) != 1:
             raise check50.Failure("transcript.txt está incorrectamente formateado")
 
+@check50.check(formatting)
+def lost_letter():
+    """Primer artículo transcrito correctamente"""
+    solutions = read_solutions("solutions.csv")
+    answers = read_answers("transcript.txt")
 
+    for question in list(
+        filter(lambda question: "I." in question, solutions.keys())
+    ):
+        solution = solutions[question]
+        if not check_answers(question, solution, answers):
+            raise check50.Failure(
+                "El primer artículo no fue transcrito correctamente"
+            )
+        
 def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     """
     Checks list of student answers for solution to given question
@@ -106,5 +120,4 @@ def read_solutions(filename: str) -> dict:
 
             solutions[question] = solution
 
-    print(solutions)
     return solutions
