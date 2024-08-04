@@ -28,7 +28,7 @@ def primer_art():
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "i." in question, solutions.keys())
+        filter(lambda question: "primer art" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -43,7 +43,7 @@ def segundo_art():
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "ii." in question, solutions.keys())
+        filter(lambda question: "segundo art" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -58,7 +58,7 @@ def tercer_art():
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "iii." in question, solutions.keys())
+        filter(lambda question: "tercer art" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -73,7 +73,7 @@ def cuarto_art():
     answers = read_answers("transcript.txt")
 
     for question in list(
-        filter(lambda question: "iv." in question, solutions.keys())
+        filter(lambda question: "cuarto art" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
