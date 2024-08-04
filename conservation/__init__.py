@@ -40,6 +40,51 @@ def primer_art():
             raise check50.Failure(
                 "El primer artículo no fue transcrito correctamente"
             )
+
+@check50.check(formatting)
+def primer_art():
+    """Segundo artículo transcrito correctamente"""
+    solutions = read_solutions("solutions.csv")
+    answers = read_answers("transcript.txt")
+
+    for question in list(
+        filter(lambda question: "ii." in question, solutions.keys())
+    ):
+        solution = solutions[question]
+        if not check_answers(question, solution, answers):
+            raise check50.Failure(
+                "El segundo artículo no fue transcrito correctamente"
+            )
+
+@check50.check(formatting)
+def primer_art():
+    """Tercer artículo transcrito correctamente"""
+    solutions = read_solutions("solutions.csv")
+    answers = read_answers("transcript.txt")
+
+    for question in list(
+        filter(lambda question: "iii." in question, solutions.keys())
+    ):
+        solution = solutions[question]
+        if not check_answers(question, solution, answers):
+            raise check50.Failure(
+                "El tercer artículo no fue transcrito correctamente"
+            )
+        
+@check50.check(formatting)
+def primer_art():
+    """Cuarto artículo transcrito correctamente"""
+    solutions = read_solutions("solutions.csv")
+    answers = read_answers("transcript.txt")
+
+    for question in list(
+        filter(lambda question: "iv." in question, solutions.keys())
+    ):
+        solution = solutions[question]
+        if not check_answers(question, solution, answers):
+            raise check50.Failure(
+                "El cuarto artículo no fue transcrito correctamente"
+            )
         
 def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     """
@@ -56,17 +101,14 @@ def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     # decode solution from hex
     solution = bytes.fromhex(solution).decode("utf-8")
 
-    # construct regex
-    regex = re.compile(
-        r"\s*".join([re.escape(word) for word in question.split()])
-        + r":\s*"
-        + re.escape(solution)
-    )
+    # Construct regex for the solution
+    solution_pattern = re.compile(re.escape(solution), re.IGNORECASE)
 
-    # check for matching answers
-    if len(list(filter(regex.search, answers))) != 1:
-        return False
-    return True
+    # Check for matching answers
+    for answer in answers:
+        if solution_pattern.search(answer):
+            return True
+    return False
 
 
 def read_answers(filename: str) -> list[str]:
