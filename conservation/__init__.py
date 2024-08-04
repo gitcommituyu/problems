@@ -15,7 +15,7 @@ def exists():
 def formatting():
     """transcript.txt formateado correctamente"""
     solutions = read_solutions("solutions.csv")
-    answers = read_answers("answers.txt")
+    answers = read_answers("transcript.txt")
 
     for question in solutions.keys():
         regex = re.compile(
@@ -29,7 +29,7 @@ def formatting():
 def first_article():
     """Primer Artículo Transcrito""" 
     solutions = read_solutions("solutions.csv")
-    answers = read_answers("answers.txt")
+    answers = read_answers("transcript.txt")
 
     for question in list(
         filter(lambda question: "I." in question, solutions.keys())
