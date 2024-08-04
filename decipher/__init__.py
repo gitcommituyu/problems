@@ -8,13 +8,13 @@ import check50
 
 @check50.check()
 def exists():
-    """transcript.txt existe."""
+    """answers.txt existe."""
     check50.exists("answers.txt")
     check50.include("solutions.csv")
 
 @check50.check(exists)
 def formatting():
-    """transcript.txt formateado correctamente"""
+    """answers.txt formateado correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("answers.txt")
 
