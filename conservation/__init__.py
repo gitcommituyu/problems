@@ -42,7 +42,7 @@ def primer_art():
             )
 
 @check50.check(formatting)
-def primer_art():
+def segundo_art():
     """Segundo artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
@@ -57,7 +57,7 @@ def primer_art():
             )
 
 @check50.check(formatting)
-def primer_art():
+def tercer_art():
     """Tercer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
@@ -72,7 +72,7 @@ def primer_art():
             )
         
 @check50.check(formatting)
-def primer_art():
+def cuarto_art():
     """Cuarto artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
