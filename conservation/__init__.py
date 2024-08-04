@@ -12,16 +12,14 @@ def exists():
     check50.exists("transcript.txt")
     check50.include("solutions.csv")
 
-@check50.check(exists)
 def formatting():
     """transcript.txt formateado correctamente"""
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
-    
-    for answer in answers:
-        if not answer.endswith("\n"):
-            raise check50.Failure("invalid answers.txt formatting")
-    
+
+    if not any(question in answers for question in solutions.keys()):
+        raise check50.Failure("transcript.txt está incorrectamente formateado")
+
 @check50.check(formatting)
 def primer_art():
     """Primer artículo transcrito correctamente"""
