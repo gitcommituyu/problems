@@ -18,7 +18,7 @@ def formatting():
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
 
-    if not any(question in answers for question in solutions.keys()):
+    if any(question in answers for question in solutions.keys()):
         raise check50.Failure("transcript.txt está incorrectamente formateado")
 
 @check50.check(formatting)
