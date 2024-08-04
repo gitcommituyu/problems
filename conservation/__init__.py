@@ -96,9 +96,9 @@ def check_answers(question: str, solution: str, answers: list[str]) -> bool:
     # Construct regex for the solution
     solution_pattern = re.compile(re.escape(solution), re.IGNORECASE)
     
-    # Check for matching answers
+    # Check for matching answers related to the given question
     for answer in answers:
-        if solution_pattern.search(answer):
+        if question in answer and solution_pattern.search(answer):
             return True
     return False
 
