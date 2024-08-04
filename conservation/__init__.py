@@ -18,14 +18,9 @@ def formatting():
     solutions = read_solutions("solutions.csv")
     answers = read_answers("transcript.txt")
     
-    for question in solutions.keys():
-        # Construct regex for the solution
-        question_pattern = re.compile(re.escape(question), re.IGNORECASE)
-        
-        # Check for matching answers
-        for answer in answers:
-            if not question_pattern.search(answer):
-                raise check50.Failure("invalid answers.txt formatting")
+    for answer in answers:
+        if not answer.endswith("\n"):
+            raise check50.Failure("invalid answers.txt formatting")
     
 @check50.check(formatting)
 def primer_art():
