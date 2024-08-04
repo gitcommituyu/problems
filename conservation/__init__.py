@@ -11,8 +11,23 @@ def exists():
     """transcript.txt existe."""
     check50.exists("transcript.txt")
     check50.include("solutions.csv")
+
+@check50.check(exists)
+def formatting():
+    """transcript.txt formateado correctamente"""
+    solutions = read_solutions("solutions.csv")
+    answers = read_answers("transcript.txt")
     
-@check50.check()
+    for question in solutions.keys():
+        # Construct regex for the solution
+        question_pattern = re.compile(re.escape(question), re.IGNORECASE)
+        
+        # Check for matching answers
+        for answer in answers:
+            if not question_pattern.search(answer):
+                raise check50.Failure("invalid answers.txt formatting")
+    
+@check50.check(formatting)
 def primer_art():
     """Primer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -27,7 +42,7 @@ def primer_art():
                 "El primer artículo no fue transcrito correctamente"
             )
 
-@check50.check()
+@check50.check(formatting)
 def segundo_art():
     """Segundo artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -42,7 +57,7 @@ def segundo_art():
                 "El segundo artículo no fue transcrito correctamente"
             )
 
-@check50.check()
+@check50.check(formatting)
 def tercer_art():
     """Tercer artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
@@ -57,7 +72,7 @@ def tercer_art():
                 "El tercer artículo no fue transcrito correctamente"
             )
         
-@check50.check()
+@check50.check(formatting)
 def cuarto_art():
     """Cuarto artículo transcrito correctamente"""
     solutions = read_solutions("solutions.csv")
