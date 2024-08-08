@@ -28,7 +28,7 @@ def hora_desaparicion():
     answers = read_answers("answers.txt")
 
     for question in list(
-        filter(lambda question: "¿A qué hora desapareció el cuadro?" in question, solutions.keys())
+        filter(lambda question: "hora" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -43,7 +43,7 @@ def responsable():
     answers = read_answers("answers.txt")
 
     for question in list(
-        filter(lambda question: "¿Quién es el responsable de la desaparición del cuadro?:" in question, solutions.keys())
+        filter(lambda question: "responsable" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
@@ -58,7 +58,7 @@ def luces():
     answers = read_answers("answers.txt")
 
     for question in list(
-        filter(lambda question: "¿Las luces tienen relación con los sucesos extraños del museo?:" in question, solutions.keys())
+        filter(lambda question: "luces" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
