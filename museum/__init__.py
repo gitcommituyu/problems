@@ -28,7 +28,7 @@ def hora_desaparicion():
     answers = read_answers("answers.txt")
 
     for question in list(
-        filter(lambda question: "hora" in question, solutions.keys())
+        filter(lambda question: "¿A qué hora desapareció el cuadro?" in question, solutions.keys())
     ):
         solution = solutions[question]
         if not check_answers(question, solution, answers):
